@@ -16,7 +16,7 @@ fun Application.configureRouting() {
         get("/") {
             call.respondText("\uD83D\uDC4B Hello Barry Reactive API REST!")
         }
-
+        gameRouting()
     }
-    gameRouting()
+
 }

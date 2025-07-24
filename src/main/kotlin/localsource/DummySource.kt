@@ -5,7 +5,6 @@ import java.time.LocalDate
 
 class DummySource {
 
-
         val games = mutableListOf(
             VideoGame(
                 id = 1,
@@ -14,7 +13,7 @@ class DummySource {
                 publisher = "Coffee Stain Publishing",
                 genre = "Action / Run and Gun",
                 platform = listOf("PC", "PS4", "Xbox One", "Switch"),
-                releaseDate = LocalDate.of(2020, 5, 12),
+                releaseDate = LocalDate.of(2020, 5, 12).toString(),
                 price = 19.99,
                 rating = 8.5,
                 coverImage = "https://cdn.cloudflare.steamstatic.com/steam/apps/598550/header.jpg",
@@ -28,7 +27,7 @@ class DummySource {
                 publisher = "Microsoft Studios",
                 genre = "Platformer / Adventure",
                 platform = listOf("PC", "Xbox One", "Switch"),
-                releaseDate = LocalDate.of(2015, 3, 11),
+                releaseDate = LocalDate.of(2015, 3, 11).toString(),
                 price = 14.99,
                 rating = 9.2,
                 coverImage = "https://cdn.cloudflare.steamstatic.com/steam/apps/261570/header.jpg",
@@ -42,7 +41,7 @@ class DummySource {
                 publisher = "Electronic Arts",
                 genre = "Action RPG / Sci-Fi",
                 platform = listOf("PC", "Xbox 360", "PS3", "Legendary Edition (PS4/PC/Xbox One)"),
-                releaseDate = LocalDate.of(2010, 1, 26),
+                releaseDate = LocalDate.of(2010, 1, 26).toString(),
                 price = 29.99,
                 rating = 9.5,
                 coverImage = "https://cdn.cloudflare.steamstatic.com/steam/apps/24980/header.jpg",
@@ -56,7 +55,7 @@ class DummySource {
                 publisher = "Microsoft Game Studios",
                 genre = "First-Person Shooter",
                 platform = listOf("Xbox", "PC", "Xbox Series X|S (via MCC)"),
-                releaseDate = LocalDate.of(2001, 11, 15),
+                releaseDate = LocalDate.of(2001, 11, 15).toString(),
                 price = 9.99,
                 rating = 9.0,
                 coverImage = "https://upload.wikimedia.org/wikipedia/en/0/02/Halo_-_Combat_Evolved_(XBox_version_-_box_art).jpg",
@@ -70,7 +69,7 @@ class DummySource {
                 publisher = "Bethesda Softworks",
                 genre = "First-Person Shooter",
                 platform = listOf("PC", "PS4", "PS5", "Xbox One", "Xbox Series X|S", "Switch"),
-                releaseDate = LocalDate.of(2020, 3, 20),
+                releaseDate = LocalDate.of(2020, 3, 20).toString(),
                 price = 39.99,
                 rating = 9.3,
                 coverImage = "https://cdn.cloudflare.steamstatic.com/steam/apps/782330/header.jpg",
@@ -84,7 +83,7 @@ class DummySource {
                 publisher = "Superdeluxe Games",
                 genre = "Shoot 'em up",
                 platform = listOf("PC", "PS4", "PS5", "Xbox Series X|S", "Switch", "Mega Drive"),
-                releaseDate = LocalDate.of(2025, 7, 31),
+                releaseDate = LocalDate.of(2025, 7, 31).toString(),
                 price = 19.99,
                 rating = 0.0, // Aún sin valoraciones oficiales
                 coverImage = "https://cdn.cloudflare.steamstatic.com/steam/apps/2968200/header.jpg", // imagen de Steam
@@ -92,6 +91,4 @@ class DummySource {
                 isMultiplayer = false
             )
         )
-
-
 }

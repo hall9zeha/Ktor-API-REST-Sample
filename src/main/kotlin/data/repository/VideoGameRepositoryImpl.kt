@@ -43,7 +43,7 @@ class VideoGameRepositoryImpl: VideoGameRepository {
 
     override fun update(entity: VideoGame): VideoGame {
         val index = dummySource.games.indexOfFirst { it.id== entity.id }
-         dummySource.games[index] = entity.copy(updatedAt = LocalDateTime.now())
+         dummySource.games[index] = entity.copy(updatedAt = LocalDateTime.now().toString())
         return entity
     }
 
@@ -51,8 +51,8 @@ class VideoGameRepositoryImpl: VideoGameRepository {
         val id = dummySource.games.maxOfOrNull { it.id }?.plus(1) ?: 1L
         val newGame = entity.copy(
             id = id,
-            createdAt = LocalDateTime.now(),
-            updatedAt = LocalDateTime.now()
+            createdAt = LocalDateTime.now().toString(),
+            updatedAt = LocalDateTime.now().toString()
         )
         dummySource.games.add(newGame)
         return newGame
