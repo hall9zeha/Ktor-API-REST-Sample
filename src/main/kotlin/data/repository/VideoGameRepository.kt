@@ -11,7 +11,7 @@ interface VideoGameRepository {
     suspend fun findByDeveloper(developer:String): Flow<VideoGame>
     suspend fun save(entity: VideoGame): VideoGame
     fun update(entity: VideoGame): VideoGame
-    fun create(entity: VideoGame): VideoGame
+    suspend fun create(entity: VideoGame): VideoGame
     suspend fun delete(entity: VideoGame): VideoGame?
     suspend fun deleteAll()
     suspend fun saveAll(entities: Iterable<VideoGame>): Flow<VideoGame>

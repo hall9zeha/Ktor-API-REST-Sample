@@ -1,14 +1,17 @@
 package dev.barryzeha.data.repository
 
+import dev.barryzeha.data.database.MDatabase
 import dev.barryzeha.localsource.DummySource
 import dev.barryzeha.model.VideoGame
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 
 class VideoGameRepositoryImpl: VideoGameRepository {
+    private val database = MDatabase.getInstance()
     private val dummySource = DummySource()
 
     override suspend fun findAll(): Flow<VideoGame> = withContext(Dispatchers.IO){
@@ -47,13 +50,14 @@ class VideoGameRepositoryImpl: VideoGameRepository {
         return entity
     }
 
-    override fun create(entity: VideoGame): VideoGame {
+    override suspend fun create(entity: VideoGame): VideoGame {
         val id = dummySource.games.maxOfOrNull { it.id }?.plus(1) ?: 1L
         val newGame = entity.copy(
             id = id,
             createdAt = LocalDateTime.now().toString(),
             updatedAt = LocalDateTime.now().toString()
         )
+        database.saveGame(newGame)
         dummySource.games.add(newGame)
         return newGame
     }

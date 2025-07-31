@@ -26,4 +26,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logback_version")
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+
+    // Mongo db
+    implementation(platform("org.mongodb:mongodb-driver-bom:5.5.1"))
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine")
 }
