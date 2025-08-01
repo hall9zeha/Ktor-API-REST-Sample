@@ -1,11 +1,21 @@
 package dev.barryzeha.model
 
-import kotlinx.serialization.Serializable
+import dev.barryzeha.common.ObjectIdSerializer
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.*
+import org.bson.codecs.pojo.annotations.BsonId
+
+import org.bson.types.ObjectId
 import java.time.LocalDate
 import java.time.LocalDateTime
 @Serializable
 data class VideoGame(
-    val id: Long = NEW_GAME,
+    @SerialName("_id")
+
+    // @Contextual No funciona correctamente para deserializar con kotlinx serializer
+    // Hay que crear tu propio serializador
+    @Serializable(with = ObjectIdSerializer::class)
+    val id: ObjectId?= null,
     val title: String,
     val developer: String,
     val publisher: String,

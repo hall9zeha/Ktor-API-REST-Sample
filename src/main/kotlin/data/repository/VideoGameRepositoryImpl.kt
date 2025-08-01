@@ -15,11 +15,11 @@ class VideoGameRepositoryImpl: VideoGameRepository {
     private val dummySource = DummySource()
 
     override suspend fun findAll(): Flow<VideoGame> = withContext(Dispatchers.IO){
-        dummySource.games.asFlow()
+        database.getAllGames().asFlow()
     }
 
-    override suspend fun findById(id: Long): VideoGame?= withContext(Dispatchers.IO){
-        dummySource.games.find { game -> game.id==id }
+    override suspend fun findById(id: String): VideoGame?= withContext(Dispatchers.IO){
+        database.findById(id)
     }
 
     override suspend fun findAllPageable(
@@ -32,38 +32,34 @@ class VideoGameRepositoryImpl: VideoGameRepository {
     }
 
     override suspend fun findByDeveloper(developer: String): Flow<VideoGame> = withContext(Dispatchers.IO) {
-        dummySource.games.filter { it.developer.contains(developer,true) }
-            .asFlow()
+        database.findByDeveloper(developer)!!.asFlow()
     }
 
     override suspend fun save(entity: VideoGame): VideoGame = withContext(Dispatchers.IO) {
-        if (entity.id == VideoGame.NEW_GAME) {
+        if (entity.id == null) {
             create(entity)
         } else {
             update(entity)
         }
     }
 
-    override fun update(entity: VideoGame): VideoGame {
-        val index = dummySource.games.indexOfFirst { it.id== entity.id }
-         dummySource.games[index] = entity.copy(updatedAt = LocalDateTime.now().toString())
+    override suspend fun update(entity: VideoGame): VideoGame {
+        val videoGameUpdate = entity.copy(updatedAt = LocalDateTime.now().toString())
+        database.updateGame(videoGameUpdate)
         return entity
     }
 
     override suspend fun create(entity: VideoGame): VideoGame {
-        val id = dummySource.games.maxOfOrNull { it.id }?.plus(1) ?: 1L
-        val newGame = entity.copy(
-            id = id,
+         val newGame = entity.copy(
             createdAt = LocalDateTime.now().toString(),
             updatedAt = LocalDateTime.now().toString()
         )
         database.saveGame(newGame)
-        dummySource.games.add(newGame)
         return newGame
     }
 
     override suspend fun delete(entity: VideoGame): VideoGame? = withContext(Dispatchers.IO){
-        dummySource.games.remove(entity)
+        database.deleteGame(entity)
         entity
     }
 

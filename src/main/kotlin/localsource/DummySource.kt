@@ -7,7 +7,7 @@ class DummySource {
 
         val games = mutableListOf(
             VideoGame(
-                id = 1,
+                id = null,
                 title = "Huntdown",
                 developer = "Easy Trigger Games",
                 publisher = "Coffee Stain Publishing",
@@ -21,7 +21,7 @@ class DummySource {
                 isMultiplayer = false
             ),
             VideoGame(
-                id = 2,
+                id = null,
                 title = "Ori and the Blind Forest",
                 developer = "Moon Studios",
                 publisher = "Microsoft Studios",
@@ -35,7 +35,7 @@ class DummySource {
                 isMultiplayer = false
             ),
             VideoGame(
-                id = 3,
+                id = null,
                 title = "Mass Effect 2",
                 developer = "BioWare",
                 publisher = "Electronic Arts",
@@ -49,7 +49,7 @@ class DummySource {
                 isMultiplayer = false
             ),
             VideoGame(
-                id = 4,
+                id = null,
                 title = "Halo: Combat Evolved",
                 developer = "Bungie",
                 publisher = "Microsoft Game Studios",
@@ -63,7 +63,7 @@ class DummySource {
                 isMultiplayer = true
             ),
             VideoGame(
-                id = 5,
+                id = null,
                 title = "DOOM Eternal",
                 developer = "id Software",
                 publisher = "Bethesda Softworks",
@@ -77,7 +77,7 @@ class DummySource {
                 isMultiplayer = true
             ),
             VideoGame(
-                id = 6,
+                id = null,
                 title = "Earthion",
                 developer = "Ancient Corporation",
                 publisher = "Superdeluxe Games",

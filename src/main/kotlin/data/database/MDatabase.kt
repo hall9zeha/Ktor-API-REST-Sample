@@ -1,10 +1,17 @@
 package dev.barryzeha.data.database
 
+import com.mongodb.client.model.Filters
+import com.mongodb.client.model.Updates
 import com.mongodb.kotlin.client.coroutine.MongoClient
 import com.mongodb.kotlin.client.coroutine.MongoCollection
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import com.typesafe.config.ConfigFactory
 import dev.barryzeha.model.VideoGame
+import io.ktor.http.ContentType
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.toCollection
+import kotlinx.coroutines.flow.toList
+import org.bson.types.ObjectId
 
 class MDatabase {
     private var mongoClient: MongoClient?=null
@@ -19,7 +26,6 @@ class MDatabase {
             return instance!!
         }
     }
-
     init {
         setupConnectionDB()
     }
@@ -32,5 +38,24 @@ class MDatabase {
     }
     suspend fun saveGame(game: VideoGame){
         collection?.insertOne(game)
+    }
+    suspend fun getAllGames():List<VideoGame>{
+        return collection?.find()?.toList()?:emptyList()
+    }
+    suspend fun findById(id: String): VideoGame?{
+        val objectId = ObjectId(id)
+        return collection?.find(Filters.eq("_id",objectId))?.firstOrNull()
+    }
+    suspend fun findByDeveloper(developer:String): List<VideoGame>?{
+        val filter = Filters.eq("developer", developer)
+        return collection?.find(filter)?.toList()
+    }
+    suspend fun updateGame(game: VideoGame){
+        val filter = Filters.eq("_id",game.id)
+        collection?.replaceOne(filter,game)
+    }
+    suspend fun deleteGame(game: VideoGame){
+        val filter = Filters.eq("_id", game.id)
+        collection?.deleteOne(filter)
     }
 }

@@ -58,7 +58,7 @@ fun Route.gameRouting(){
         }
         // Get by id
         get("{id}"){
-            val id=call.parameters["id"]?.toLongOrNull()
+            val id=call.parameters["id"]
             id?.let{
                 games.findById(it)?.run{
                     call.respond(HttpStatusCode.OK,this)
@@ -66,7 +66,7 @@ fun Route.gameRouting(){
             } ?: call.respond(HttpStatusCode.BadRequest, "ID is not a number")
         }
         // Get by developer
-        get("{developer}"){
+        get("/developer/{developer}"){
             val developer = call.parameters["developer"]
             developer?.let{
                 games.findByDeveloper(developer)?.run {
@@ -83,7 +83,7 @@ fun Route.gameRouting(){
         }
         // Update by id
         put("{id}"){
-            val id = call.parameters["id"]?.toLongOrNull()
+            val id = call.parameters["id"]
             id?.let{
                val game = call.receive<VideoGame>()
                 games.findById(it)?.let{
@@ -95,7 +95,7 @@ fun Route.gameRouting(){
 
         // Delete by id
         delete("{id}"){
-            val id = call.parameters["id"]?.toLongOrNull()
+            val id = call.parameters["id"]
             id?.let{
                 games.findById(it)?.let{game->
                     games.delete(game)
