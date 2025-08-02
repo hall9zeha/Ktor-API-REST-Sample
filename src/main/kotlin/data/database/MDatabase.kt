@@ -42,6 +42,10 @@ class MDatabase {
     suspend fun getAllGames():List<VideoGame>{
         return collection?.find()?.toList()?:emptyList()
     }
+    suspend fun getGamesWithPagination(page:Int, perPage:Int):List<VideoGame>?{
+        val skipAmount = (page - 1) * perPage
+        return collection?.find()?.skip(skipAmount)?.limit(perPage)?.toList()?:emptyList()
+    }
     suspend fun findById(id: String): VideoGame?{
         val objectId = ObjectId(id)
         return collection?.find(Filters.eq("_id",objectId))?.firstOrNull()

@@ -26,9 +26,7 @@ class VideoGameRepositoryImpl: VideoGameRepository {
         page: Int,
         perPage: Int
     ): Flow<VideoGame> = withContext(Dispatchers.IO)  {
-        val myLimit = if (perPage > 100) 100L else perPage.toLong()
-        val myOffset = (page * perPage).toLong()
-        dummySource.games.subList(myOffset.toInt(), myLimit.toInt()).asFlow()
+        database.getGamesWithPagination(page,perPage)!!.asFlow()
     }
 
     override suspend fun findByDeveloper(developer: String): Flow<VideoGame> = withContext(Dispatchers.IO) {

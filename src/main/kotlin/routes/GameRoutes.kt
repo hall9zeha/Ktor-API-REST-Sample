@@ -49,7 +49,7 @@ fun Route.gameRouting(){
             val perPage = call.request.queryParameters["perPage"]?.toIntOrNull() ?: 4
 
             if (page != null && page > 0) {
-                games.findAllPageable(page - 1, perPage).toList().run { call.respond(HttpStatusCode.OK, this) }
+                games.findAllPageable(page, perPage).toList().run { call.respond(HttpStatusCode.OK, this) }
 
             } else {
                 games.findAll().toList()
