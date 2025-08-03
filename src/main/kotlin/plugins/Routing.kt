@@ -3,6 +3,7 @@ package dev.barryzeha.plugins
 import dev.barryzeha.data.repository.VideoGameRepository
 import dev.barryzeha.data.repository.VideoGameRepositoryImpl
 import dev.barryzeha.routes.gameRouting
+import dev.barryzeha.routes.userRouting
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.*
 import io.ktor.server.response.*
@@ -17,6 +18,7 @@ fun Application.configureRouting() {
             call.respondText("\uD83D\uDC4B Hello Barry Reactive API REST!")
         }
         gameRouting()
+        userRouting()
     }
 
 }

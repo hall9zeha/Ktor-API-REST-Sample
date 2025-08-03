@@ -1,0 +1,31 @@
+package dev.barryzeha.model
+
+import dev.barryzeha.common.ObjectIdSerializer
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+import org.bson.types.ObjectId
+
+@Serializable
+data class User(
+    @SerialName("_id")
+    @Serializable(with= ObjectIdSerializer::class)
+    val id: ObjectId?=null,
+    val name: String,
+    val email: String,
+    val username: String,
+    val password: String,
+    val avatar: String = DEFAULT_IMAGE,
+    val role: Role = Role.USER,
+    val createdAt: String = now(),
+    val updatedAt: String=now(),
+    val deleted: Boolean = false
+
+) {
+    companion object {
+        const val DEFAULT_IMAGE = "https://i.imgur.com/fIgch2x.png"
+        fun now(): String = java.time.LocalDateTime.now().toString()
+    }
+    enum class Role{
+        USER, ADMIN
+    }
+}

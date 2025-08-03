@@ -15,4 +15,6 @@ interface VideoGameRepository {
     suspend fun delete(entity: VideoGame): VideoGame?
     suspend fun deleteAll()
     suspend fun saveAll(entities: Iterable<VideoGame>): Flow<VideoGame>
+
+
 }
