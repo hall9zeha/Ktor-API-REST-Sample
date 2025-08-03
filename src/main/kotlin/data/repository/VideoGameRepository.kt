@@ -9,9 +9,9 @@ interface VideoGameRepository {
     suspend fun findById(id:String): VideoGame?
     suspend fun findAllPageable(page:Int, perPage:Int): Flow<VideoGame>
     suspend fun findByDeveloper(developer:String): Flow<VideoGame>
-    suspend fun save(entity: VideoGame): VideoGame
+    suspend fun save(entity: VideoGame): VideoGame?
     suspend fun update(entity: VideoGame): VideoGame
-    suspend fun create(entity: VideoGame): VideoGame
+    suspend fun create(entity: VideoGame): VideoGame?
     suspend fun delete(entity: VideoGame): VideoGame?
     suspend fun deleteAll()
     suspend fun saveAll(entities: Iterable<VideoGame>): Flow<VideoGame>

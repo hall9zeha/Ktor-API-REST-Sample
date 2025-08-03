@@ -33,7 +33,7 @@ class VideoGameRepositoryImpl: VideoGameRepository {
         database.findByDeveloper(developer)!!.asFlow()
     }
 
-    override suspend fun save(entity: VideoGame): VideoGame = withContext(Dispatchers.IO) {
+    override suspend fun save(entity: VideoGame): VideoGame? = withContext(Dispatchers.IO) {
         if (entity.id == null) {
             create(entity)
         } else {
@@ -47,13 +47,13 @@ class VideoGameRepositoryImpl: VideoGameRepository {
         return entity
     }
 
-    override suspend fun create(entity: VideoGame): VideoGame {
+    override suspend fun create(entity: VideoGame): VideoGame? {
          val newGame = entity.copy(
             createdAt = LocalDateTime.now().toString(),
             updatedAt = LocalDateTime.now().toString()
         )
-        database.saveGame(newGame)
-        return newGame
+        return database.saveGame(newGame)?:null
+        //return newGame
     }
 
     override suspend fun delete(entity: VideoGame): VideoGame? = withContext(Dispatchers.IO){

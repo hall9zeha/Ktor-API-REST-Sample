@@ -18,27 +18,6 @@ import kotlinx.coroutines.flow.toList
 import kotlin.text.toIntOrNull
 
 private const val ENDPOINT = "api/games"
-/*fun Application.gameRouting() {
-    val games: VideoGameRepository = VideoGameRepositoryImpl()
-    routing {
-        route("/$ENDPOINT") {
-            get {
-                // QueryParams ??
-                val page = call.request.queryParameters["page"]?.toIntOrNull()
-                val perPage = call.request.queryParameters["perPage"]?.toIntOrNull() ?: 4
-
-                if (page != null && page > 0) {
-                    games.findAllPageable(page - 1, perPage).toList().run { call.respond(HttpStatusCode.OK, this) }
-
-                } else {
-                    games.findAll().toList()
-                        .run { call.respond(HttpStatusCode.OK, this) }
-                }
-            }
-        }
-    }
-}*/
-
 fun Route.gameRouting(){
     val games: VideoGameRepository = VideoGameRepositoryImpl()
     route("/$ENDPOINT") {
@@ -78,7 +57,9 @@ fun Route.gameRouting(){
         post {
             val game = call.receive<VideoGame>()
             games.save(game).run {
-                call.respond(HttpStatusCode.Created,this)
+                this?.let {
+                    call.respond(HttpStatusCode.Created, this)
+                }
             }
         }
         // Update by id
@@ -86,9 +67,11 @@ fun Route.gameRouting(){
             val id = call.parameters["id"]
             id?.let{
                val game = call.receive<VideoGame>()
-                games.findById(it)?.let{
-                    games.save(game)
-                        .run { call.respond(HttpStatusCode.OK,this) }
+                games.findById(it)?.let{response->
+                    response?.let {
+                        games.save(game)
+                            .run { call.respond(HttpStatusCode.OK, response!!) }
+                    }
                 }?:call.respond(HttpStatusCode.NotFound, "Game not found with ID $id")
             }?: call.respond(HttpStatusCode.BadRequest, "ID is not a number")
         }

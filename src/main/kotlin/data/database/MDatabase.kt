@@ -11,6 +11,7 @@ import io.ktor.http.ContentType
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.toCollection
 import kotlinx.coroutines.flow.toList
+import org.bson.Document
 import org.bson.types.ObjectId
 
 class MDatabase {
@@ -36,8 +37,10 @@ class MDatabase {
         database = mongoClient?.getDatabase("games_db")
         collection = database?.getCollection<VideoGame>("game")
     }
-    suspend fun saveGame(game: VideoGame){
-        collection?.insertOne(game)
+    suspend fun saveGame(game: VideoGame):VideoGame?{
+        val result =  collection?.insertOne(game)
+        val documentId=result?.insertedId
+        return collection?.find(Filters.eq("_id",documentId))?.firstOrNull()
     }
     suspend fun getAllGames():List<VideoGame>{
         return collection?.find()?.toList()?:emptyList()
