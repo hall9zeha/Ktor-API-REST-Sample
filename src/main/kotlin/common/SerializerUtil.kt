@@ -1,5 +1,7 @@
 package dev.barryzeha.common
 
+import dev.barryzeha.services.TokenService
+import io.ktor.server.config.ApplicationConfig
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.descriptors.PrimitiveKind
 import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
@@ -12,6 +14,7 @@ import org.bson.codecs.kotlinx.BsonEncoder
 import org.bson.types.ObjectId
 
 object ObjectIdSerializer: KSerializer<ObjectId>{
+
     override val descriptor: SerialDescriptor = PrimitiveSerialDescriptor("ObjectId", PrimitiveKind.STRING)
 
     override fun serialize(encoder: Encoder, value: ObjectId) {

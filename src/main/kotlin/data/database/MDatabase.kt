@@ -73,4 +73,10 @@ class MDatabase {
     suspend fun getAllUsers():List<User>?{
         return userCollection?.find()?.toList()?:emptyList()
     }
+    suspend fun getUserById(id:String):User?{
+        return userCollection?.find(Filters.eq("_id",id))?.firstOrNull()
+    }
+    suspend fun getUserByUsername(username:String):User?{
+        return userCollection?.find(Filters.eq("username",username))?.firstOrNull()
+    }
 }

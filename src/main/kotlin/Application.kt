@@ -2,6 +2,7 @@ package dev.barryzeha
 
 import dev.barryzeha.data.repository.VideoGameRepository
 import dev.barryzeha.data.repository.VideoGameRepositoryImpl
+import dev.barryzeha.plugins.configSecurity
 import dev.barryzeha.plugins.configureRouting
 import dev.barryzeha.plugins.configureSerialization
 import dev.barryzeha.routes.gameRouting
@@ -14,6 +15,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+    configSecurity()
     configureSerialization()
     configureRouting()
 }

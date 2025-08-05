@@ -1,5 +1,7 @@
 val kotlin_version: String by project
 val logback_version: String by project
+val ktor_version:String by project
+val bcrypt_version:String by project
 
 plugins {
     kotlin("jvm") version "2.1.10"
@@ -31,4 +33,10 @@ dependencies {
     implementation(platform("org.mongodb:mongodb-driver-bom:5.5.1"))
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine")
     implementation("org.mongodb:bson-kotlinx")
+
+    // Auth JWT
+    implementation("io.ktor:ktor-server-auth-jvm:${ktor_version}")
+    implementation("io.ktor:ktor-server-auth-jwt-jvm:${ktor_version}")
+    implementation("io.ktor:ktor-server-host-common-jvm:${ktor_version}")
+    implementation("com.ToxicBakery.library.bcrypt:bcrypt:${bcrypt_version}")
 }
