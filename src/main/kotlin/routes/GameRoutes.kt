@@ -17,7 +17,7 @@ import io.ktor.server.routing.routing
 import kotlinx.coroutines.flow.toList
 import kotlin.text.toIntOrNull
 
-private const val ENDPOINT = "api/games"
+private const val ENDPOINT = "api/v1/games"
 fun Route.gameRouting(){
     val games: VideoGameRepository = VideoGameRepositoryImpl()
     route("/$ENDPOINT") {
@@ -63,7 +63,8 @@ fun Route.gameRouting(){
             }
         }
         // Update by id
-        put("{id}"){
+        // the body also requires an ID
+        put("update/{id}"){
             val id = call.parameters["id"]
             id?.let{
                val game = call.receive<VideoGame>()
@@ -77,7 +78,7 @@ fun Route.gameRouting(){
         }
 
         // Delete by id
-        delete("{id}"){
+        delete("delete/{id}"){
             val id = call.parameters["id"]
             id?.let{
                 games.findById(it)?.let{game->

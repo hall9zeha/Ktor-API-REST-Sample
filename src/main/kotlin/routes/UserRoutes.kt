@@ -13,7 +13,7 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 
-const val USER_ENDPOINT = "api/users"
+const val USER_ENDPOINT = "api/v1/users"
 fun Route.userRouting(){
     val userRepo: UserRepository = UserRepositoryImpl()
     val tokenService = TokenService.getInstance()
