@@ -6,7 +6,6 @@ import dev.barryzeha.model.VideoGame
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 

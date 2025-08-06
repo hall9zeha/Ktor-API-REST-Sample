@@ -5,7 +5,6 @@ import dev.barryzeha.data.database.MDatabase
 import dev.barryzeha.model.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.io.bytestring.encodeToByteString
 
 class UserRepositoryImpl: UserRepository {
     val database = MDatabase.getInstance()

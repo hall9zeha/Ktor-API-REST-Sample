@@ -54,7 +54,7 @@ fun Route.gameRouting(){
             }?: call.respond(HttpStatusCode.BadRequest,"Developer is not a string")
         }
         // Create a new video game
-        post {
+        post("create") {
             val game = call.receive<VideoGame>()
             games.save(game).run {
                 this?.let {

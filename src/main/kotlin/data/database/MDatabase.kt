@@ -29,6 +29,8 @@ class MDatabase {
         setupConnectionDB()
     }
     private fun setupConnectionDB() {
+        // The local.conf file contains a MongoDB URL and is ignored by Git for security reasons.
+        // You need to create your own local.conf file with the MongoDB URL, or use an environment variable instead.
         val config = ConfigFactory.parseResources("local.conf").resolve()
         val mongoUri = config.getString("mongo.uri")
         mongoClient = MongoClient.create(mongoUri)

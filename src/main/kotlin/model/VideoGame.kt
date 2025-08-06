@@ -12,8 +12,9 @@ import java.time.LocalDateTime
 data class VideoGame(
     @SerialName("_id")
 
-    // @Contextual No funciona correctamente para deserializar con kotlinx serializer
-    // Hay que crear tu propio serializador
+    // @Contextual val id: ObjectId? = null; The approach suggested in the documentation does not work correctly
+    // for deserializing with kotlinx.serialization
+    // You need to create your own serializer
     @Serializable(with = ObjectIdSerializer::class)
     val id: ObjectId?= null,
     val title: String,
@@ -33,7 +34,6 @@ data class VideoGame(
 ) {
     companion object {
         const val DEFAULT_COVER = "https://example.com/default_game_cover.jpg"
-        const val NEW_GAME = -1L
         fun now(): String = java.time.LocalDateTime.now().toString()
     }
 }
