@@ -14,8 +14,25 @@ version = "0.0.1"
 
 application {
     mainClass = "io.ktor.server.netty.EngineMain"
+    //mainClass.set("ktor-apirest-sample.ApplicationKt")
 }
 
+// Para probar ./gradlew buildFatJar de forma local podemos forzar la versión de java que queremos que utilice para
+// la compilación. Ya que tenemos un dockerfile para que ejecute la versión de java que especifiquemos allí y lo despliegue
+// en nuestro servidor en la nube ya no necesitamos esto y lo comentamos
+//
+/*kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11)) // o usa 11 si prefieres
+    }
+}*/
+
+ktor{
+    // Para personalizar el nombre de archivo .jar creado al ejecutar ./gradlew buildFatJar
+    fatJar {
+        archiveFileName.set("ktor-sample-api-rest.jar")
+    }
+}
 repositories {
     mavenCentral()
 }
