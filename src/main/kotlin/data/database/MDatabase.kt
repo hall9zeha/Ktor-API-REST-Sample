@@ -34,10 +34,10 @@ class MDatabase {
     private fun setupConnectionDB() {
         // The local.conf file contains a MongoDB URL and is ignored by Git for security reasons.
         // You need to create your own local.conf file with the MongoDB URL, or use an environment variable instead.
-        val config = ConfigFactory.parseResources("local.conf").resolve()
-        val mongoUriLocal = config.getString("mongo.uri")
+        /*val config = ConfigFactory.parseResources("local.conf").resolve()
+        val mongoUriLocal = config.getString("mongo.uri")*/
         val applicationConfig = ApplicationConfig("application.conf")
-        val mongoUri = applicationConfig.propertyOrNull("ktor.database.uri")?.getString()?:mongoUriLocal
+        val mongoUri = applicationConfig.propertyOrNull("ktor.database.uri")?.getString()?:""/*?:mongoUriLocal*/
             //?.getString()?:mongoUriLocal
         mongoClient = MongoClient.create(mongoUri)
         database = mongoClient?.getDatabase("games_db")
