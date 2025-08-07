@@ -7,6 +7,9 @@ import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import com.typesafe.config.ConfigFactory
 import dev.barryzeha.model.User
 import dev.barryzeha.model.VideoGame
+import io.ktor.server.application.Application
+import io.ktor.server.config.ApplicationConfig
+import io.ktor.server.engine.applicationEnvironment
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.toList
 import org.bson.types.ObjectId
@@ -32,7 +35,10 @@ class MDatabase {
         // The local.conf file contains a MongoDB URL and is ignored by Git for security reasons.
         // You need to create your own local.conf file with the MongoDB URL, or use an environment variable instead.
         val config = ConfigFactory.parseResources("local.conf").resolve()
-        val mongoUri = config.getString("mongo.uri")
+        val mongoUriLocal = config.getString("mongo.uri")
+        val applicationConfig = ApplicationConfig("application.conf")
+        val mongoUri = applicationConfig.propertyOrNull("ktor.database.uri")?.getString()?:mongoUriLocal
+            //?.getString()?:mongoUriLocal
         mongoClient = MongoClient.create(mongoUri)
         database = mongoClient?.getDatabase("games_db")
         gameCollection = database?.getCollection<VideoGame>("game")

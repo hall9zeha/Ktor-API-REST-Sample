@@ -1,5 +1,7 @@
 package dev.barryzeha
 
+import com.typesafe.config.ConfigFactory
+import com.typesafe.config.ConfigMergeable
 import dev.barryzeha.data.repository.VideoGameRepository
 import dev.barryzeha.data.repository.VideoGameRepositoryImpl
 import dev.barryzeha.plugins.configSecurity
@@ -15,6 +17,7 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
+
     configSecurity()
     configureSerialization()
     configureRouting()

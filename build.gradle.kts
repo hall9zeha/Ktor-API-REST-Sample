@@ -39,4 +39,7 @@ dependencies {
     implementation("io.ktor:ktor-server-auth-jwt-jvm:${ktor_version}")
     implementation("io.ktor:ktor-server-host-common-jvm:${ktor_version}")
     implementation("com.ToxicBakery.library.bcrypt:bcrypt:${bcrypt_version}")
+
+    // SSL/TLS
+    implementation("io.ktor:ktor-network-tls-certificates:${ktor_version}")
 }
