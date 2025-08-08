@@ -87,7 +87,8 @@ class MDatabase {
         return userCollection?.find()?.toList()?:emptyList()
     }
     suspend fun getUserById(id:String):User?{
-        return userCollection?.find(Filters.eq("_id",id))?.firstOrNull()
+        val objectId= ObjectId(id)
+        return userCollection?.find(Filters.eq("_id",objectId))?.firstOrNull()
     }
     suspend fun getUserByUsername(username:String):User?{
         return userCollection?.find(Filters.eq("username",username))?.firstOrNull()

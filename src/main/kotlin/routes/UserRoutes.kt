@@ -18,6 +18,8 @@ fun Route.userRouting(){
     val userRepo: UserRepository = UserRepositoryImpl()
     val tokenService = TokenService.getInstance()
     route("/$USER_ENDPOINT"){
+        //We can wrap any request that we want to authenticate with our token
+        // to restrict the requests only if we have a valid token.
        authenticate {
             get {
                 val userId = call.principal<JWTPrincipal>()
@@ -49,6 +51,26 @@ fun Route.userRouting(){
             }?:run{
                 call.respond(HttpStatusCode.NotFound,"User or password incorrect")
             }
+        }
+        get("/id/{userId}"){
+            val id = call.parameters["userId"]
+            id?.let{
+                userRepo.getUserById(id)?.run{
+                    call.respond(HttpStatusCode.OK,this)
+                }?:call.respond(HttpStatusCode.NotFound,"User not found by userId")
+
+            }?:call.respond(HttpStatusCode.BadRequest,"userId is not a String")
+
+        }
+        get("/username/{userName}"){
+            val name = call.parameters["userName"]
+            name?.let{
+                userRepo.getUserByUsername(it)?.run{
+                    call.respond(HttpStatusCode.OK,this)
+                }?:call.respond(HttpStatusCode.NotFound,"User not found by userName")
+
+            }?:call.respond(HttpStatusCode.BadRequest,"userName is not a String")
+
         }
     }
 }
