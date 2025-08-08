@@ -1,4 +1,5 @@
 # ktor-apirest-sample (en español)
+[![English 🇬🇧](https://img.shields.io/badge/-Read%20in%20English-blue?style=for-the-badge)](README.md)
 
 Este proyecto fue creado usando el [Generador de Proyectos de Ktor](https://start.ktor.io).
 
@@ -60,12 +61,6 @@ val mongoUri = applicationConfig.propertyOrNull("ktor.database.uri")?.getString(
 Para probar tu API en un servicio como Render, simplemente sube el repositorio y agrega la variable de entorno `DATABASE_URL` con tu cadena de conexión.  
 El `Dockerfile` se encargará de compilar todo lo necesario:
 
-### Postman
-Este repositorio incluye un archivo que puede ser importado en Postman y contiene todas las peticiones necesarias para probar la API.
-
-Ten en cuenta que, para realizar la petición de "obtener todos los usuarios", primero debes crear uno y luego ejecutar la petición **"login user"** para obtener un token.  
-Este token debe ser utilizado como **Bearer** en la autorización de las peticiones protegidas, como la de obtener todos los usuarios.  
-Esto te permitirá probar correctamente la autenticación mediante JWT.
 
 ```dockerfile
 # Usa Gradle con JDK 11 para compilar el proyecto
@@ -95,6 +90,13 @@ COPY --from=build /home/gradle/src/build/libs/*.jar /app/ktor-sample-api_server.
 # Comando de entrada para ejecutar la app
 ENTRYPOINT ["java","-jar","/app/ktor-sample-api_server.jar"]
 ```
+
+### Postman
+Este repositorio incluye un archivo que puede ser importado en Postman y contiene todas las peticiones necesarias para probar la API.
+
+Ten en cuenta que, para realizar la petición de "obtener todos los usuarios", primero debes crear uno y luego ejecutar la petición **"login user"** para obtener un token.  
+Este token debe ser utilizado como **Bearer** en la autorización de las peticiones protegidas, como la de obtener todos los usuarios.  
+Esto te permitirá probar correctamente la autenticación mediante JWT.
 
 ### Comandos disponibles
 

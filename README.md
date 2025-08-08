@@ -1,4 +1,5 @@
 # ktor-apirest-sample
+[![Spanish 🇪🇸](https://img.shields.io/badge/-Leer%20en%20Español-red?style=for-the-badge)](README_es.md)
 
 This project was created using the [Ktor Project Generator](https://start.ktor.io).
 
@@ -81,7 +82,7 @@ Please note that to perform the **"get all users"** request, you must first crea
 This token should be used as a **Bearer** in the authorization header for protected endpoints like retrieving all users.  
 This allows you to properly test JWT-based authentication.
 
-To build or run the project, use one of the following tasks:
+### To build or run the project, use one of the following tasks:
 
 | Task                          | Description                                                          |
 |-------------------------------|----------------------------------------------------------------------|
