@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "c5b28f77-740c-490c-a654-0a6ed1efa9a9",
+		"name": "ktor-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28361623"
+	},
+	"item": [
+		{
+			"name": "request by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/games/developer/EA electronics",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"games",
+						"developer",
+						"EA electronics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all games",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/games",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new game",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"title\": \"Dead Space\",\n        \"developer\": \"EA\",\n        \"publisher\": \"Microsoft\",\n        \"genre\": \"Shutter / Adventure\",\n        \"platform\": [\n            \"PC\",\n            \"Xbox One\",\n            \"PlayStation\"\n        ],\n        \"releaseDate\": \"2012-03-11\",\n        \"price\": 14.99,\n        \"rating\": 9.2,\n        \"coverImage\": \"https://cdn.cloudflare.steamstatic.com/steam/apps/261570/header.jpg\",\n        \"description\": \"Emotional and beautifully crafted platformer.\",\n        \"isMultiplayer\": false,\n        \"createdAt\": \"2025-08-01T11:38:27.665031\",\n        \"updatedAt\": \"2025-08-01T11:38:27.665104\",\n        \"isDeleted\": false\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/games/create",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"games",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update game",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\": \"688f79cea0a4100321145c75\",\n    \"title\": \"Earthion\",\n    \"developer\": \"Moon\",\n    \"publisher\": \"Microsoft\",\n    \"genre\": \"Platformer / Shut em up\",\n    \"platform\": [\n        \"PC\",\n        \"Xbox One\",\n        \"Switch\",\n        \"Megadrive\"\n    ],\n    \"releaseDate\": \"2025-07-30\",\n    \"price\": 14.99,\n    \"rating\": 9.2,\n    \"coverImage\": \"https://cdn.cloudflare.steamstatic.com/steam/apps/261570/header.jpg\",\n    \"description\": \"Emotional and beautifully crafted platformer.\",\n    \"isMultiplayer\": false,\n    \"createdAt\": \"2025-08-03T10:01:32.628817\",\n    \"updatedAt\": \"2025-08-03T10:01:32.628863\",\n    \"isDeleted\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/games/update/688f79cea0a4100321145c75",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"games",
+						"update",
+						"688f79cea0a4100321145c75"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete game",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/games/delete/689368bed01629b584a7bb59",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"games",
+						"delete",
+						"689368bed01629b584a7bb59"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create a new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"testUser\",\n    \"email\":\"user@mail.com\",\n    \"username\":\"testUser\",\n    \"password\":\"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/users/register",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"martha\",\n    \"password\":\"martha123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/users/login",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/users/id/6892369953ded046823730e4",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"id",
+						"6892369953ded046823730e4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhcGlyZXN0LWt0b3ItYXV0aCIsImlzcyI6ImFwaXJlc3Qta3RvciIsInN1YiI6IkF1dGhlbnRpY2F0aW9uIiwidXNlcm5hbWUiOiJtYXJ0aGEiLCJ1c2VybWFpbCI6Im1hcnRoYUBtYWlsLmNvbSIsInVzZXJJZCI6IjY4OTIzNjk5NTNkZWQwNDY4MjM3MzBlNCIsImV4cCI6MTc1NDY2NzkyM30.EHVvZ5FIBYMU4TZqZzftGwAXCSts-dGhcjscZNnjvu2m4NskGKynN9JGvFy-X-LbVko4JZ-4QtWQUykhxkotHg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/users",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user by username",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:8080/api/v1/users/username/barry-user",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"users",
+						"username",
+						"barry-user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
