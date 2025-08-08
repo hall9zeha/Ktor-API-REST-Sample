@@ -22,7 +22,7 @@ Here's a list of features included in this project:
 |[Json Web Tokens ](https://www.jwt.io/)|Enables secure transmission of information between parties as a JSON object, commonly used for authentication|
 
 ## Building & Running
-### Importante:
+### Important:
 To avoid exposing the connection string of our database (in this case, MongoDB), a file named local.conf has been created inside the resources/ directory. This file contains the connection string we will use. You must create this file to provide your own connection string.
 
 ```
@@ -74,6 +74,13 @@ COPY --from=build /home/gradle/src/build/libs/*.jar /app/ktor-sample-api_server.
 ENTRYPOINT ["java","-jar","/app/ktor-sample-api_server.jar"]
 
 ```
+### Postman
+This repository includes a file that can be imported into Postman and contains all the requests needed to test the API.
+
+Please note that to perform the **"get all users"** request, you must first create a user and then execute the **"login user"** request to obtain a token.  
+This token should be used as a **Bearer** in the authorization header for protected endpoints like retrieving all users.  
+This allows you to properly test JWT-based authentication.
+
 To build or run the project, use one of the following tasks:
 
 | Task                          | Description                                                          |
