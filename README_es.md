@@ -1,4 +1,4 @@
-# ktor-apirest-sample (en español)
+# ktor-apirest-sample
 [![English 🇬🇧](https://img.shields.io/badge/-Read%20in%20English-blue?style=for-the-badge)](README.md)
 
 Este proyecto fue creado usando el [Generador de Proyectos de Ktor](https://start.ktor.io).
